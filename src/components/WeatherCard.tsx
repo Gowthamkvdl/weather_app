@@ -4,6 +4,16 @@ import { WiHumidity, WiCloudyWindy, WiTime5 } from "react-icons/wi"
 import { SiProbot } from "react-icons/si"
 import '@splinetool/viewer' // registers <spline-viewer>
 
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "spline-viewer": any;
+    }
+  }
+} 
+   
+
 type WeatherProps = {
   city: string
   temp: number
