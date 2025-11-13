@@ -13,47 +13,74 @@
     opacity: 1;
   }
 }
-
 .glass-card {
-  background: rgba(0, 0, 0, 0.299);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* translucent background so you can see the backdrop */
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  /* main blur */
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  /* fallback for browsers without backdrop-filter */
+  background-color: rgba(255,255,255,0.03);
+
+  /* look & feel */
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 4px 2px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.04);
+
+  /* make sure it paints on top of the background */
   position: relative;
+  z-index: 1;
+
+  /* ensure the background is clipped inside the border */
+  background-clip: padding-box;
   overflow: hidden;
 }
 
+/* small top highlight */
 .glass-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.8),
-      transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  pointer-events: none;
 }
 
+/* left vertical highlight */
 .glass-card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.8),
-      transparent,
-      rgba(255, 255, 255, 0.3));
+  background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 40%, rgba(255,255,255,0.06));
+  pointer-events: none;
 }
+
+/* the small robo-msg bubble */
+.robo-msg {
+  min-width: 50%;
+  max-width: 90%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 12px 18px;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  background-clip: padding-box;
+  z-index: 2; /* be above other UI */
+}
+@media (max-width: 768px) {
+  .robo-msg { min-width: 80%; }
+}
+
 
 .location-input {
   background-color: rgba(0, 0, 0, 0.277);
@@ -112,14 +139,5 @@
 }
 
 
-.robo-msg {
-  min-width: 50%;
-}
 
-/* md and below (<= 768px) */
-@media (max-width: 768px) {
-  .robo-msg {
-    min-width: 80%;
-  }
-}
 
