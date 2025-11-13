@@ -1,10 +1,3 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { FiEdit } from "react-icons/fi"
-import { WiHumidity, WiCloudyWindy, WiTime5 } from "react-icons/wi"
-import { SiProbot } from "react-icons/si"
-import '@splinetool/viewer' // registers <spline-viewer>
-
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -12,7 +5,15 @@ declare global {
     }
   }
 } 
-   
+ 
+
+import React, { useEffect, useMemo, useState } from "react"
+import { FiEdit } from "react-icons/fi"
+import { WiHumidity, WiCloudyWindy, WiTime5 } from "react-icons/wi"
+import { SiProbot } from "react-icons/si"
+import '@splinetool/viewer' // registers <spline-viewer>
+
+
 
 type WeatherProps = {
   city: string
