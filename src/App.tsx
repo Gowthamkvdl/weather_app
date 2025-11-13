@@ -138,7 +138,7 @@ function App() {
       if (backdrop) backdrop.remove()
       document.body.classList.remove('modal-open')
       document.body.style.removeProperty('padding-right')
-    }
+    }``
     setError(null)
 
   }
